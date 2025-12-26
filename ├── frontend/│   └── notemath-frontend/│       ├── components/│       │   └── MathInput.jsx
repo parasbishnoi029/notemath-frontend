@@ -1,20 +1,14 @@
 import { useEffect, useRef } from "react";
 import "mathlive";
 
-/*
-This component:
-- Shows math keyboard
-- Returns LaTeX like: \int x^2 dx
-*/
-
 export default function MathInput({ onChange }) {
   const ref = useRef(null);
 
   useEffect(() => {
     const mf = ref.current;
+    if (!mf) return;
 
     mf.addEventListener("input", () => {
-      // convert visual math → LaTeX
       onChange(mf.getValue("latex"));
     });
   }, [onChange]);
